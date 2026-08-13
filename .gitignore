@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+
+# Experiment outputs (results live under output_dir set per-config)
+logs/
+output/
+*.log
+
+# Scratch
+*.npz
+
+# Internal working directories, not part of the published repo.
+# NB: .gitignore does not apply to files git already tracks. If any of these were committed before
+# being listed here, remove them from the index too:  git rm -r --cached <dir>
+results/
+other_configs/
+other_tools/
+
+# docs/ is PUBLISHED (METHOD.md, RESULTS.md) -- do not ignore it. It was ignored at one point, which
+# silently kept new files out of the repo while the already-tracked ones kept working.
+
+# distribution archives -- built, never committed
+*.zip
+*.tar.gz

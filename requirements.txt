@@ -1,0 +1,56 @@
+# QuARC-GS runtime dependencies (pure-python / wheel-installable).
+#
+# Install torch FIRST, matched to your CUDA, then this file. Several packages here compile against
+# the installed torch, so pip must be able to see it already -- hence --no-build-isolation:
+#
+#   conda create -n recongs python=3.10 && conda activate recongs
+#   pip install torch==2.11.0 torchvision==0.26.0 --index-url https://download.pytorch.org/whl/cu128
+#   pip install -r requirements.txt --no-build-isolation
+#
+# The three git dependencies (libgs, diff-gaussian-rasterization, simple-knn) are NOT listed here --
+# they are pinned as git submodules under third_party/ and installed from there. See README section 1b.
+#
+# Versions below are the ones the reported results were produced with (CUDA 12.8, RTX PRO 6000).
+# Anything reasonably recent should work; they are pinned only so a failed reproduction can be
+# checked against a known-good set.
+
+numpy==1.26.4
+opencv-python==4.9.0.80
+pillow==12.2.0
+scipy==1.15.3
+tqdm==4.68.3
+einops==0.8.2
+
+# config + CLI (main.py takes --pipeline/--config through absl, everything else through omegaconf)
+omegaconf==2.3.1
+absl-py==2.4.0
+
+# runtime shape checking on tensor annotations. jax/jaxlib are NOT optional: libgs's camera types do
+# `from jaxtyping import Array`, and jaxtyping resolves `Array` by importing jax on first access.
+jaxtyping==0.2.28
+jax==0.4.20
+jaxlib==0.4.20
+
+# metric logging; tools/collect_metrics.py reads the event files back
+tensorboard==2.21.0
+
+# point cloud I/O
+plyfile==1.0.3
+
+# --- these two compile against your torch build; if pip picks a mismatched wheel, install them
+# --- from the PyTorch geometric / keops instructions for your exact torch+CUDA combination.
+torch-scatter==2.1.2          # pipeline/QuARC-GS/utils.py: scatter_min over anchor bins
+pykeops==2.3                  # pipeline/QuARC-GS/utils.py: LazyTensor kNN for anchor binding
+
+# --- NOT listed here, install from the pinned submodules instead (README section 1b):
+#       third_party/diff-gaussian-rasterization   graphdeco-inria @ 59f5f77  (+ nested glm submodule)
+#       third_party/simple-knn                    bkerbl @ 86710c2
+#       third_party/libgs                         Awesome3DGS @ 7702313
+#     The first two are CUDA extensions needing nvcc and a visible torch at build time. Pinning
+#     matters for the rasterizer specifically: libgs calls the two-return-value API
+#     (`image, radii = rasterizer(...)`), so a newer fork that also returns depth will NOT drop in.
+
+# NOT required to reproduce the reported numbers:
+#   SEA-RAFT + SAM2 (motion_prior.py) are imported lazily and only when the optional MoRGS-style
+#   motion gate is enabled. The shipped configs leave it off. COLMAP is a separate package
+#   (>= 3.12), needed only for data preparation -- see README sections 2 and 3.
