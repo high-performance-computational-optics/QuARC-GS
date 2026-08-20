@@ -493,7 +493,7 @@ third_party/                  # pinned git submodules -- clone with --recurse-su
 
 ---
 
-## Acknowledgement & Citation
+## Acknowledgement
 
 Built on [ReCon-GS](https://github.com/jyfu-vcl/ReCon-GS) (NeurIPS 2025), and on
 [3DGS](https://github.com/graphdeco-inria/gaussian-splatting) and
@@ -507,3 +507,15 @@ Built on [ReCon-GS](https://github.com/jyfu-vcl/ReCon-GS) (NeurIPS 2025), and on
   year      = {2025}
 }
 ```
+
+## Citation
+@misc{nguyen2026quarcgs,
+  title         = {QuARC-GS: Quantized Anchored Residual Coding for Compact Dynamic Scene Streaming with Gaussian Splatting},
+  author        = {Nguyen, Vu Trung Nghia and Wang, Yuchen and Lee, Kyung Chul and Zhou, Kevin C.},
+  year          = {2026},
+  eprint        = {2608.18285},
+  archivePrefix = {arXiv},
+  primaryClass  = {eess.IV}
+}
+
+
