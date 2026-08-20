@@ -509,6 +509,7 @@ Built on [ReCon-GS](https://github.com/jyfu-vcl/ReCon-GS) (NeurIPS 2025), and on
 ```
 
 ## Citation
+```bibtex
 @misc{nguyen2026quarcgs,
   title         = {QuARC-GS: Quantized Anchored Residual Coding for Compact Dynamic Scene Streaming with Gaussian Splatting},
   author        = {Nguyen, Vu Trung Nghia and Wang, Yuchen and Lee, Kyung Chul and Zhou, Kevin C.},
@@ -517,5 +518,5 @@ Built on [ReCon-GS](https://github.com/jyfu-vcl/ReCon-GS) (NeurIPS 2025), and on
   archivePrefix = {arXiv},
   primaryClass  = {eess.IV}
 }
-
+```
 
