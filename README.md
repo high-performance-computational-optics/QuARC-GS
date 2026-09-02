@@ -1,6 +1,9 @@
 <div align="center">
 
 # QuARC-GS — Quantized-Motion, Change-Gated Streaming of Dynamic Gaussians
+[![arXiv](https://img.shields.io/badge/arXiv-2509.24325-b31b1b.svg)](https://arxiv.org/abs/2608.18285)
+
+Vu Trung Nghia Nguyen, Yuchen Wang, Kyung Chul Lee, Kevin C. Zhou
 
 Storage-aware online free-viewpoint video with **STE-quantized anchor motion**, **change-gated
 appearance densification**, and **entropy-based storage accounting**.
